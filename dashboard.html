@@ -16,114 +16,74 @@
                     }
                 }
             }
-        }
+        };
     </script>
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col">
     <header class="bg-white shadow-md">
-        <nav class="container mx-auto px-6 py-4 flex items-center"> <!-- Flexbox for vertical centering -->
-            <div class="flex justify-between items-center w-full">
-                <a href="index.html" class="text-3xl font-bold text-primary">FitConnect</a> <!-- Logo -->
-                <div class="hidden md:flex space-x-6 items-center"> <!-- Flex alignment for centering links -->
-                    <a href="index.html" class="text-lg text-gray-700 hover:text-primary">Home</a>
-                    <a href="dashboard.html" class="text-lg text-gray-700 hover:text-primary">Dashboard</a>
-                    <a href="workout.html" class="text-lg text-gray-700 hover:text-primary">Workouts</a>
-                    <a href="nutrition.html" class="text-lg text-gray-700 hover:text-primary">Nutrition</a>
-                    <a href="goals.html" class="text-lg text-gray-700 hover:text-primary">Goals</a>
-                    <a href="analytics.html" class="text-lg text-gray-700 hover:text-primary">Analytics</a>
-                    <a href="about.html" class="text-lg text-gray-700 hover:text-primary">About Us</a>
-                    <a href="profile.html" class="text-lg text-gray-700 hover:text-primary">Profile</a>
-                    <a href="login.html" class="text-lg bg-primary text-white px-5 py-2 rounded-md hover:bg-blue-700">Login</a>
-                </div>
-                <button class="md:hidden">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
-                </button>
+        <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="text-3xl font-bold text-primary">FitConnect</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html" class="text-lg text-gray-700 hover:text-primary">Home</a>
+                <a href="dashboard.html" class="text-lg text-gray-700 hover:text-primary">Dashboard</a>
+                <a href="about.html" class="text-lg text-gray-700 hover:text-primary">About Us</a>
+                <a href="logout.php" class="text-lg bg-primary text-white px-5 py-2 rounded-md hover:bg-blue-700">Logout</a>
             </div>
+            <button class="md:hidden">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
         </nav>
     </header>
 
     <main class="flex-grow container mx-auto px-6 py-8">
-        <h1 class="text-3xl font-bold mb-8">Welcome back, User!</h1>
-        
-        <div class="grid md:grid-cols-2 gap-8">
-            <div class="bg-white p-6 rounded-lg shadow-md">
-                <h2 class="text-xl font-semibold mb-4">Weekly Progress</h2>
-                <canvas id="weeklyProgressChart"></canvas>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-md">
-                <h2 class="text-xl font-semibold mb-4">Quick Actions</h2>
-                <div class="grid grid-cols-2 gap-4">
-                    <a href="workout.html" class="bg-primary text-white p-4 rounded-md text-center hover:bg-blue-700">Log Workout</a>
-                    <a href="nutrition.html" class="bg-secondary text-white p-4 rounded-md text-center hover:bg-green-700">Log Meal</a>
-                    <a href="goals.html" class="bg-yellow-500 text-white p-4 rounded-md text-center hover:bg-yellow-600">Set New Goal</a>
-                    <a href="community.html" class="bg-purple-500 text-white p-4 rounded-md text-center hover:bg-purple-600">Community</a>
-                </div>
-            </div>
-        </div>
+        <!-- Session Message -->
+        <div id="message-container"></div>
 
-        <div class="mt-8 bg-white p-6 rounded-lg shadow-md">
-            <h2 class="text-xl font-semibold mb-4">Recent Activities</h2>
-            <ul class="space-y-2">
-                <li class="flex justify-between items-center">
-                    <span>Morning Run</span>
-                    <span class="text-gray-500">2 hours ago</span>
-                </li>
-                <li class="flex justify-between items-center">
-                    <span>Logged Lunch</span>
-                    <span class="text-gray-500">5 hours ago</span>
-                </li>
-                <li class="flex justify-between items-center">
-                    <span>Weight Training</span>
-                    <span class="text-gray-500">Yesterday</span>
-                </li>
-            </ul>
+        <h1 class="text-3xl font-bold mb-8">Welcome back, <span id="username">User</span>!</h1>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Workout Form -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Log Your Workout</h2>
+                <form id="workoutForm">
+                    <input type="text" name="workout_type" placeholder="Workout Type" required class="w-full p-2 mb-2 border rounded">
+                    <input type="number" name="duration" placeholder="Duration (mins)" required class="w-full p-2 mb-2 border rounded">
+                    <input type="date" name="date" required class="w-full p-2 mb-2 border rounded">
+                    <button type="submit" class="w-full bg-primary text-white p-2 rounded">Log Workout</button>
+                </form>
+                <p id="workoutMsg" class="text-green-600 mt-2"></p>
+            </div>
         </div>
     </main>
 
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <h3 class="text-2xl font-bold">FitConnect</h3>
-                    <p class="text-sm mt-2">Your personal fitness companion</p>
-                </div>
-                <div class="flex space-x-4">
-                    <a href="#" class="hover:text-primary">Privacy Policy</a>
-                    <a href="#" class="hover:text-primary">Terms of Service</a>
-                    <a href="about.html" class="hover:text-primary">About Us</a>
-                </div>
-            </div>
-            <div class="mt-8 text-center text-sm">
-                &copy; 2024 FitConnect. All rights reserved.
-            </div>
-        </div>
-    </footer>
-
     <script>
-        // Sample data for the weekly progress chart
-        const ctx = document.getElementById('weeklyProgressChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                datasets: [{
-                    label: 'Calories Burned',
-                    data: [300, 450, 200, 500, 300, 400, 350],
-                    borderColor: '#3B82F6',
-                    tension: 0.1
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
+        // Fetch session messages (success/error) from PHP
+        fetch("session_message.php")
+            .then(response => response.text())
+            .then(data => {
+                if (data.trim()) {
+                    document.getElementById("message-container").innerHTML = 
+                        `<div class="bg-red-500 text-white p-3 mb-4 rounded-md text-center">${data}</div>`;
                 }
-            }
+            });
+
+        // Workout Form Submission
+        document.getElementById("workoutForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            
+            fetch("log_workout.php", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("workoutMsg").textContent = data;
+            });
         });
     </script>
+
 </body>
 </html>

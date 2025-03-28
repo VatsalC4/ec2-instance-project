@@ -1,3 +1,7 @@
+<?php 
+session_start(); 
+$isLoggedIn = isset($_SESSION['user_id']); 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,12 +29,7 @@
             <div id="menu" class="md:flex space-x-6 items-center">
                 <a href="index.html" class="text-lg text-gray-700 hover:text-primary">Home</a>
                 <a href="dashboard.html" class="text-lg text-gray-700 hover:text-primary">Dashboard</a>
-                <a href="workout.html" class="text-lg text-gray-700 hover:text-primary">Workouts</a>
-                <a href="nutrition.html" class="text-lg text-gray-700 hover:text-primary">Nutrition</a>
-                <a href="goals.html" class="text-lg text-gray-700 hover:text-primary">Goals</a>
-                <a href="analytics.html" class="text-lg text-gray-700 hover:text-primary">Analytics</a>
                 <a href="about.html" class="text-lg text-gray-700 hover:text-primary">About Us</a>
-                <a href="profile.html" class="text-lg text-gray-700 hover:text-primary">Profile</a>
                 <a href="login.html" class="text-lg bg-primary text-white px-5 py-2 rounded-md hover:bg-blue-700">Login</a>
             </div>
         </nav>
@@ -50,13 +49,6 @@
                     <input type="password" id="password" name="password" required placeholder="Enter your password"
                         class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
                 </div>
-                <div class="flex justify-between items-center mb-4">
-                    <label for="remember" class="inline-flex items-center text-sm text-gray-700">
-                        <input type="checkbox" id="remember" name="remember" class="form-checkbox text-primary">
-                        <span class="ml-2">Remember me</span>
-                    </label>
-                    <a href="forgot-password.html" class="text-sm text-primary hover:underline">Forgot password?</a>
-                </div>
                 <button type="submit" class="w-full py-2 bg-primary text-white font-semibold rounded-md hover:bg-blue-700">
                     Login
                 </button>
@@ -64,23 +56,10 @@
             <div class="mt-6 text-center">
                 <p class="text-gray-700 text-sm">
                     Don't have an account? 
-                    <a href="signup.html" class="text-primary hover:underline">Sign up</a>
+                    <a href="signup.php" class="text-primary hover:underline">Sign up</a>
                 </p>
             </div>
         </div>
     </main>
-
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="container mx-auto px-6 text-center">
-            <h3 class="text-2xl font-bold">FitConnect</h3>
-            <p class="text-sm mt-2">Your personal fitness companion</p>
-            <div class="mt-4 space-x-4">
-                <a href="#" class="hover:text-primary">Privacy Policy</a>
-                <a href="#" class="hover:text-primary">Terms of Service</a>
-                <a href="about.html" class="hover:text-primary">About Us</a>
-            </div>
-            <div class="mt-4 text-sm">&copy; 2024 FitConnect. All rights reserved.</div>
-        </div>
-    </footer>
 </body>
 </html>
