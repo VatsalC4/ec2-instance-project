@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitConnect - Analytics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+    <header class="bg-white shadow-md">
+        <nav class="container mx-auto px-6 py-4 flex items-center"> <!-- Flexbox for vertical centering -->
+            <div class="flex justify-between items-center w-full">
+                <a href="index.html" class="text-3xl font-bold text-primary">FitConnect</a> <!-- Logo -->
+                <div class="hidden md:flex space-x-6 items-center"> <!-- Flex alignment for centering links -->
+                    <a href="index.html" class="text-lg text-gray-700 hover:text-primary">Home</a>
+                    <a href="dashboard.html" class="text-lg text-gray-700 hover:text-primary">Dashboard</a>
+                    <a href="workout.html" class="text-lg text-gray-700 hover:text-primary">Workouts</a>
+                    <a href="nutrition.html" class="text-lg text-gray-700 hover:text-primary">Nutrition</a>
+                    <a href="goals.html" class="text-lg text-gray-700 hover:text-primary">Goals</a>
+                    <a href="analytics.html" class="text-lg text-gray-700 hover:text-primary">Analytics</a>
+                    <a href="about.html" class="text-lg text-gray-700 hover:text-primary">About Us</a>
+                    <a href="profile.html" class="text-lg text-gray-700 hover:text-primary">Profile</a>
+                    <a href="login.html" class="text-lg bg-primary text-white px-5 py-2 rounded-md hover:bg-blue-700">Login</a>
+                </div>
+                <button class="md:hidden">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-grow container mx-auto px-6 py-8">
+        <h1 class="text-3xl font-bold mb-8">Your Fitness Analytics</h1>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Workout Progress</h2>
+                <canvas id="workoutProgressChart"></canvas>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Calorie Intake vs. Burn</h2>
+                <canvas id="calorieChart"></canvas>
+            </div>
+        </div>
+
+        <div class="mt-8 grid md:grid-cols-3 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Weight Tracking</h2>
+                <canvas id="weightChart"></canvas>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Sleep Analysis</h2>
+                <canvas id="sleepChart"></canvas>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Fitness Score</h2>
+                <div class="flex items-center justify-center h-full">
+                    <div class="text-6xl font-bold text-primary">85</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-2xl font-bold">FitConnect</h3>
+                    <p class="text-sm mt-2">Your personal fitness companion</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-primary">Privacy Policy</a>
+                    <a href="#" class="hover:text-primary">Terms of Service</a>
+                    <a href="about.html" class="hover:text-primary">About Us</a>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-sm">
+                &copy; 2024 FitConnect. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sample data for charts
+        const ctx1 = document.getElementById('workoutProgressChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                datasets: [{
+                    label: 'Workout Duration (minutes)',
+                    data: [30, 45, 60, 75],
+                    borderColor: '#3B82F6',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const ctx2 = document.getElementById('calorieChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Calories Consumed',
+                    data: [2000, 2200, 1900, 2100, 2300, 2400, 2000],
+                    backgroundColor: '#3B82F6'
+                }, {
+                    label: 'Calories Burned',
+                    data: [1800, 2000, 2100, 1900, 2200, 2300, 1800],
+                    backgroundColor: '#10B981'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const ctx3 = document.getElementById('weightChart').getContext('2d');
+        new Chart(ctx3, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Weight (kg)',
+                    data: [75, 74, 73, 72, 71, 70],
+                    borderColor: '#3B82F6',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
+                }
+            }
+        });
+
+        const ctx4 = document.getElementById('sleepChart').getContext('2d');
+        new Chart(ctx4, {
+            type: 'bar',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Sleep Duration (hours)',
+                    data: [7, 6.5, 8, 7.5, 6, 9, 8.5],
+                    backgroundColor: '#3B82F6'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

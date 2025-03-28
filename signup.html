@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitConnect - Sign Up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                    }
+                }
+            }
+        };
+    </script>
+    <script>
+        function validateForm() {
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirm-password").value;
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <header class="bg-white shadow-md">
+        <nav class="container mx-auto px-6 py-4 flex items-center">
+            <div class="flex justify-between items-center w-full">
+                <a href="index.html" class="text-3xl font-bold text-primary">FitConnect</a>
+                <div class="hidden md:flex space-x-6 items-center">
+                    <a href="index.html" class="text-lg text-gray-700 hover:text-primary">Home</a>
+                    <a href="dashboard.html" class="text-lg text-gray-700 hover:text-primary">Dashboard</a>
+                    <a href="workout.html" class="text-lg text-gray-700 hover:text-primary">Workouts</a>
+                    <a href="nutrition.html" class="text-lg text-gray-700 hover:text-primary">Nutrition</a>
+                    <a href="goals.html" class="text-lg text-gray-700 hover:text-primary">Goals</a>
+                    <a href="analytics.html" class="text-lg text-gray-700 hover:text-primary">Analytics</a>
+                    <a href="about.html" class="text-lg text-gray-700 hover:text-primary">About Us</a>
+                    <a href="profile.html" class="text-lg text-gray-700 hover:text-primary">Profile</a>
+                    <a href="login.html" class="text-lg bg-primary text-white px-5 py-2 rounded-md hover:bg-blue-700">Login</a>
+                </div>
+                <button class="md:hidden">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sign-Up Form -->
+    <main class="flex-grow flex items-center justify-center">
+        <div class="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full">
+            <h2 class="text-3xl font-bold text-primary mb-6 text-center">Sign Up</h2>
+            <form action="auth.php" method="POST" onsubmit="return validateForm()">
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700 text-sm font-medium mb-2">Full Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your full name"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700 text-sm font-medium mb-2">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="block text-gray-700 text-sm font-medium mb-2">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Create a password"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                </div>
+                <div class="mb-6">
+                    <label for="confirm-password" class="block text-gray-700 text-sm font-medium mb-2">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required placeholder="Confirm your password"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                </div>
+                <button type="submit" name="signup" class="w-full py-2 bg-primary text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-primary">
+                    Sign Up
+                </button>
+            </form>
+            <div class="mt-6 text-center">
+                <p class="text-gray-700 text-sm">
+                    Already have an account? 
+                    <a href="login.html" class="text-primary hover:underline">Log in</a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-2xl font-bold">FitConnect</h3>
+                    <p class="text-sm mt-2">Your personal fitness companion</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-primary">Privacy Policy</a>
+                    <a href="#" class="hover:text-primary">Terms of Service</a>
+                    <a href="about.html" class="hover:text-primary">About Us</a>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-sm">
+                &copy; 2024 FitConnect. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
